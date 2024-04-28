@@ -1,5 +1,5 @@
 // 输入: 2 6 2 1 3
-// 输出: 2 6 2 1 3
+// 输出: 6 3 2 2 1
 #include <iostream>
 #include <vector>
 
@@ -26,6 +26,24 @@ void swap(int &a, int &b)
     b = tmp;
 }
 
+void selectSort(vector<int> &ivec)
+{
+    int index;
+    for (int i = 0; i < ivec.size(); i++)
+    {
+        index = i;
+        for (int j = i + 1; j < ivec.size(); j++)
+        {
+            // if (ivec[index] < ivec[j])
+            if (ivec[index] < ivec[j])
+            {
+                index = j;
+            }
+        }
+        swap(ivec[i], ivec[index]);
+    }
+}
+
 int main()
 {
     // 构建数组
@@ -38,6 +56,7 @@ int main()
         ivec.push_back(item);
     }
     // 排序
+    selectSort(ivec);
     // 打印
     printVec(ivec);
 }
