@@ -28,9 +28,11 @@ void swap(int &a, int &b)
 
 void selectSort(vector<int> &ivec)
 {
+    // 循环 n次
     for (int i = 0; i < ivec.size(); i++)
     {
         int index = i;
+        // 比较(n-1)+(n-2)+...+1次
         for (int j = i + 1; j < ivec.size(); j++)
         {
             if (ivec[index] > ivec[j])

@@ -28,6 +28,7 @@ void swap(int &a, int &b)
 
 void insertSort(vector<int> &ivec)
 {
+    // 循环 n-1次
     for (int i = 1; i < ivec.size(); i++)
     {
         int j;

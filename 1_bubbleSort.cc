@@ -29,8 +29,10 @@ void swap(int &a, int &b)
 // 冒泡排序(相邻两数)
 void bubbleSort(vector<int> &ivec)
 {
+    // 循环 n次
     for (int i = 0; i < ivec.size(); i++)
     {
+        // 比较 n-1次
         for (int j = 0; j < ivec.size() - 1; j++)
         {
             if (ivec[j] > ivec[j + 1])
