@@ -30,7 +30,7 @@ int main()
 {
     // 构建数组
     vector<int> ivec;
-    ivec.reserve(5);
+    ivec.reserve(LEN);
     int item;
     for (int i = 0; i < LEN; i++)
     {
