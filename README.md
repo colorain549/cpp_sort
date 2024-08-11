@@ -10,11 +10,46 @@
 * 外层控制有多少轮
 * 内层控制该轮元素的比较
 * 空间复杂度O(1)
+```
+// 冒泡排序(相邻两数)
+void bubbleSort(vector<int> &ivec)
+{
+    // 循环 n次
+    for (int i = 0; i < ivec.size(); i++)
+    {
+        // 比较 n-1次
+        for (int j = 0; j < ivec.size() - 1; j++)
+        {
+            if (ivec[j] > ivec[j + 1])
+            {
+                swap(ivec[j], ivec[j + 1]);
+            }
+        }
+    }
+}
+```
 ## 1冒泡排序(不相邻两数)(升序)
 1. 说明
 * 内层循环: 比较i和i+1后的每一个元素，若符合条件, 则交换元素
 2. 时间复杂度
 * 外层循环n次, 内层循环(n-1)+(n-2)+...+1次, 循环比较次数n*(n-1)/2, 即O(n^2)
+```
+void bubbleSort(vector<int> &ivec)
+{
+    // 循环 n次
+    for (int i = 0; i < ivec.size(); i++)
+    {
+        // 比较(n-1)+(n-2)+...+1次
+        for (int j = i + 1; j < ivec.size(); j++)
+        {
+            if (ivec[i] > ivec[j])
+            {
+                swap(ivec[i], ivec[j]);
+            }
+        }
+    }
+}
+```
 ## 2选择排序(升序)
 1. 说明
 * 内层循环: 比较i和i+1后的每一个元素，若符合条件, 则交换指针, 内循环完整遍历一轮后才交换元素
@@ -24,6 +59,25 @@
 * 外层控制有多少轮
 * 内层控制该轮元素的比较
 * 空间复杂度O(1)
+```
+void selectSort(vector<int> &ivec)
+{
+    // 循环 n次
+    for (int i = 0; i < ivec.size(); i++)
+    {
+        int index = i;
+        // 比较(n-1)+(n-2)+...+1次
+        for (int j = i + 1; j < ivec.size(); j++)
+        {
+            if (ivec[index] > ivec[j])
+            {
+                index = j;
+            }
+        }
+        swap(ivec[i], ivec[index]);
+    }
+}
+```
 ## 3插入排序(升序)(适用于部分有序的场景)
 1. 说明
 * 序列只有一个数, 该序列有序
@@ -35,6 +89,22 @@
 * 因此,时间复杂度为O(n-1)*((1+2+...(n-2))/2)，即O(n^2)
 3. 补充
 * 空间复杂度O(1)
+```
+void insertSort(vector<int> &ivec)
+{
+    // 循环 n-1次
+    for (int i = 1; i < ivec.size(); i++)
+    {
+        int j;
+        int insertVal = ivec[i];
+        for (j = i - 1; j >= 0 && ivec[j] > insertVal; j--)
+        {
+            ivec[j + 1] = ivec[j];
+        }
+        ivec[j+1] = insertVal;
+    }
+}
+```
 ## 4希尔排序(升序)(适用于6k以内)
 1. 说明
 * 插入排序的改进，增加一次循环
@@ -44,6 +114,24 @@
 * 6000多以内时比快速排序和堆排序快
 4. 补充
 * 空间复杂度O(1)
+```
+void shellsSort(vector<int> &ivec)
+{
+    for (int gap = ivec.size() / 2; gap > 0; gap /= 2)
+    {
+        for (int i = gap; i < ivec.size(); i+=gap)
+        {
+            int j;
+            int insertVal = ivec[i];
+            for (j = i - gap; j >= 0 && ivec[j] > insertVal; j-=gap)
+            {
+                ivec[j + gap] = ivec[j];
+            }
+            ivec[j + gap] = insertVal;
+        }
+    }
+}
+```
 ## 5快速排序(注意:当数组长度为0或1时)(升序)
 1. 说明
 * 分治思想，设置基准值, 分为左边和右边，不断递归
@@ -52,6 +140,34 @@
 * O(nlog2n)
 3. 补充 
 * 空间复杂度O(n)
+```
+vector<int> quickSort(vector<int> &ivec)
+{
+    if (ivec.size() <= 1)
+    {
+        return ivec;
+    }
+    int pivot = ivec[0];
+    vector<int> less;
+    vector<int> greater;
+    for (int i = 1; i < ivec.size(); i++)
+    {
+        if (ivec[i] <= pivot)
+        {
+            less.push_back(ivec[i]);
+        }
+        else
+        {
+            greater.push_back(ivec[i]);
+        }
+    }
+    auto sorted_less = quickSort(less);
+    auto sorted_greater = quickSort(greater);
+    sorted_less.push_back(pivot);
+    sorted_less.insert(sorted_less.end(), sorted_greater.begin(), sorted_greater.end());
+    return sorted_less;
+}
+```
 ## 6堆排序(升序)(适用于数据上亿时10million)
 1. 说明
 * 先用n个元素建立大顶堆
@@ -68,6 +184,45 @@
 * 最坏/平均时间复杂符(O(nlog2n))
 3. 补充
 * 空间复杂度O(1)
+```
+// 大顶堆
+void adjustMaxHeap(vector<int> &ivec, int adjustPos, int arrLen)
+{
+    int dad = adjustPos;
+    int son = 2 * dad + 1;
+    while (son < arrLen)
+    {
+        if (son + 1 < arrLen && ivec[son + 1] > ivec[son])
+        {
+            son++;
+        }
+        if (ivec[dad] < ivec[son])
+        {
+            swap(ivec[dad], ivec[son]);
+            dad = son;
+            son = 2 * dad + 1;
+        }
+        else
+        {
+            break;
+        }
+    }
+}
+// 堆排序
+void heapSort(vector<int> &ivec)
+{
+    for (int i = ivec.size() / 2 - 1; i >= 0; i--)
+    {
+        adjustMaxHeap(ivec, i, LEN);
+    }
+    swap(ivec[0], ivec[LEN - 1]);
+    for (int i = ivec.size() - 1; i > 0; i--)
+    {
+        adjustMaxHeap(ivec, 0, i);
+        swap(ivec[0], ivec[i - 1]);
+    }
+}
+```
 ## 7归并排序(注意:当数组长度为0或1时)(升序)
 1. 说明
 * 先拆分再合并
@@ -75,6 +230,44 @@
 * 平均时间复杂符(O(nlog2n))
 3. 补充
 * 空间复杂度O(n)
+```
+vector<int> merge(vector<int> &left, vector<int> &right)
+{
+    vector<int> result;
+    int left_index = 0;
+    int right_index = 0;
+    while (left_index < left.size() && right_index < right.size())
+    {
+        if (left[left_index] <= right[right_index])
+        {
+            result.push_back(left[left_index]);
+            left_index++;
+        }
+        else
+        {
+            result.push_back(right[right_index]);
+            right_index++;
+        }
+    }
+    result.insert(result.end(), left.begin() + left_index, left.end());
+    result.insert(result.end(), right.begin() + right_index, right.end());
+    return result;
+}
+vector<int> mergeSort(vector<int> &ivec)
+{
+    if (ivec.size() <= 1)
+    {
+        return ivec;
+    }
+    int mid = ivec.size() / 2;
+    vector<int> left(ivec.begin(), ivec.begin() + mid);
+    vector<int> right(ivec.begin() + mid, ivec.end());
+    auto sorted_left = mergeSort(left);
+    auto sorted_right = mergeSort(right);
+    auto result = merge(sorted_left, sorted_right);
+    return result;
+}
+```
 ## 8计数排序(升序)
 1. 说明
 * 先遍历一次整个数组, 统计每个元素出现的次数, 用一个新的数组保存
@@ -85,6 +278,31 @@
 * m为元素的最大值, 即代码中的index
 3. 补充
 * 空间复杂度(O(n))
+```
+void countSort(vector<int> &ivec)
+{
+    // 初始数组下标是0到9(只能输入0到9的元素)
+    int index = 10;
+    vector<int> count(index);
+    // count[]统计元素频率
+    for (int i = 0; i < ivec.size(); i++)
+    {
+        count[ivec[i]]++;
+    }
+    // 结果数组下标
+    int newIndex = 0;
+    for (int i = 0; i < index; i++)
+    {
+        // 遇到频率大于0的元素
+        for (int j = 0; j < count[i]; j++)
+        {
+            // 就填充到结果数组
+            ivec[newIndex] = i;
+            newIndex++;
+        }
+    }
+}
+```
 ## 9第k大元素(可重复)(9_kthMaxValue.cc)
 ## 🌟9第k大元素(可重复)(9_kthMaxValuePque.cc)
 ```
@@ -103,7 +321,13 @@ int pqeuSort(vector<int>&ivec, int k){
 ## 🌟11第k大元素(不重复)(set)(11_kthMaxValueSet.cc)
 1. 第k大元素相当于 第len-k+1大元素
 ```
-
+set<int> iset(ivec.begin(), ivec.end());
+    auto it = iset.begin();
+    for (int i = 1; i < iset.size() - k + 1; ++i)
+    {
+        ++it;
+    }
+    cout << *it << endl;
 ```
 ## 11第k大元素(不重复)(vector)(11_kthMaxValueVec.cc)
 ## 12冒泡排序(相邻两数)(降序)
