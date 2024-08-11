@@ -85,9 +85,27 @@
 * m为元素的最大值, 即代码中的index
 3. 补充
 * 空间复杂度(O(n))
-## 9第k大元素(可重复)
+## 9第k大元素(可重复)(9_kthMaxValue.cc)
+## 🌟9第k大元素(可重复)(9_kthMaxValuePque.cc)
+```
+int pqeuSort(vector<int>&ivec, int k){
+    priority<int, vector<int>, std::greater<int>> pque;
+    for(int i=0; i<ivec.size(); i++){
+        pque.push(ivec[i]);
+        if(pque.size() > k){
+            pque.pop();
+        }
+    }
+    return pque.top();
+}
+```
 ## 10第k大元素(可重复但内存不足k)
-## 11第k大元素(不重复)
+## 🌟11第k大元素(不重复)(set)(11_kthMaxValueSet.cc)
+1. 第k大元素相当于 第len-k+1大元素
+```
+
+```
+## 11第k大元素(不重复)(vector)(11_kthMaxValueVec.cc)
 ## 12冒泡排序(相邻两数)(降序)
 ## 12冒泡排序(不相邻两数)(降序)
 ## 13选择排序(降序)
