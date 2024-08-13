@@ -269,7 +269,7 @@ vector<int> mergeSort(vector<int> &ivec)
     return result;
 }
 ```
-## 8计数排序(升序)
+## 8计数排序(升序)(要求元素不重复)
 1. 说明
 * 先遍历一次整个数组, 统计每个元素出现的次数, 用一个新的数组保存
 * 将出现过的元素, 覆盖原来的数组
@@ -432,7 +432,7 @@ set<int> iset(ivec.begin(), ivec.end());
     }
     cout << *it << endl;
 ```
-## 11第k大元素(不重复)(vector)(11_kthMaxValueVec.cc)(不推荐)
+## 11第k大元素(不重复)(vector)(11_kthMaxValueVec.cc)
 ## 12冒泡排序(相邻两数)(降序)
 ## 12冒泡排序(不相邻两数)(降序)
 ## 13选择排序(降序)
