@@ -269,7 +269,7 @@ vector<int> mergeSort(vector<int> &ivec)
     return result;
 }
 ```
-## 8计数排序(升序)(要求元素不重复)(需给定范围)
+## 8计数排序(升序)(要求元素不重复)(需给定范)
 1. 说明
 * 先遍历一次整个数组, 统计每个元素出现的次数, 用一个新的数组保存
 * 将出现过的元素, 覆盖原来的数组
@@ -425,12 +425,12 @@ int main()
 1. 第k大元素相当于 第len-k+1大元素
 ```
 set<int> iset(ivec.begin(), ivec.end());
-    auto it = iset.begin();
-    for (int i = 1; i < iset.size() - k + 1; ++i)
-    {
-        ++it;
-    }
-    cout << *it << endl;
+auto it = iset.begin();
+for (int i = 1; i < iset.size() - k + 1; ++i)
+{
+    ++it;
+}
+cout << *it << endl;
 ```
 ## 11第k大元素(不重复)(vector)(不推荐, 需给定范围)
 ## 12冒泡排序(相邻两数)(降序)
