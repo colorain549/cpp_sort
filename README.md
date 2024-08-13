@@ -303,10 +303,35 @@ void countSort(vector<int> &ivec)
     }
 }
 ```
-## 9第k大元素(可重复)(9_kthMaxValue.cc)
+## 9第k大元素(可重复)(9_kthMaxValue.cc)(堆排序)
+```
+void heapSort(vector<int> &ivec, int k)
+{
+    for (int i = k / 2 - 1; i >= 0; i--)
+    {
+        adjustMinHeap(ivec, i, k);
+    }
+}
+
+// 第k大元素
+int kth;
+cin >> kth;
+// 堆排序
+heapSort(ivec, kth);
+// 若第kth号后的元素大于根元素
+// 交换并重新堆排序
+for (int i = kth; i < ivec.size(); i++)
+{
+    if (ivec[i] > ivec[0])
+    {
+        swap(ivec[i], ivec[0]);
+        heapSort(ivec, kth);
+    }
+}
+```
 ## 🌟9第k大元素(可重复)(9_kthMaxValuePque.cc)
 ```
-int pqeuSort(vector<int>&ivec, int k){
+int pqueSort(vector<int>&ivec, int k){
     priority<int, vector<int>, std::greater<int>> pque;
     for(int i=0; i<ivec.size(); i++){
         pque.push(ivec[i]);
@@ -329,7 +354,7 @@ set<int> iset(ivec.begin(), ivec.end());
     }
     cout << *it << endl;
 ```
-## 11第k大元素(不重复)(vector)(11_kthMaxValueVec.cc)
+## 11第k大元素(不重复)(vector)(11_kthMaxValueVec.cc)(不推荐)
 ## 12冒泡排序(相邻两数)(降序)
 ## 12冒泡排序(不相邻两数)(降序)
 ## 13选择排序(降序)
