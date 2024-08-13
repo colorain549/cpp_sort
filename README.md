@@ -234,23 +234,24 @@ void heapSort(vector<int> &ivec)
 vector<int> merge(vector<int> &left, vector<int> &right)
 {
     vector<int> result;
-    int left_index = 0;
-    int right_index = 0;
-    while (left_index < left.size() && right_index < right.size())
+    int leftIndex = 0;
+    int rightIndex = 0;
+    while (leftIndex < left.size() && rightIndex < right.size())
     {
-        if (left[left_index] <= right[right_index])
+        if (left[leftIndex] <= right[rightIndex])
         {
-            result.push_back(left[left_index]);
-            left_index++;
+            result.push_back(left[leftIndex]);
+            leftIndex++;
         }
         else
         {
-            result.push_back(right[right_index]);
-            right_index++;
+            result.push_back(right[rightIndex]);
+            // 注意这里
+            rightIndex++;
         }
     }
-    result.insert(result.end(), left.begin() + left_index, left.end());
-    result.insert(result.end(), right.begin() + right_index, right.end());
+    result.insert(result.end(), left.begin() + leftIndex, left.end());
+    result.insert(result.end(), right.begin() + rightIndex, right.end());
     return result;
 }
 vector<int> mergeSort(vector<int> &ivec)
@@ -262,9 +263,9 @@ vector<int> mergeSort(vector<int> &ivec)
     int mid = ivec.size() / 2;
     vector<int> left(ivec.begin(), ivec.begin() + mid);
     vector<int> right(ivec.begin() + mid, ivec.end());
-    auto sorted_left = mergeSort(left);
-    auto sorted_right = mergeSort(right);
-    auto result = merge(sorted_left, sorted_right);
+    auto sortedLeft = mergeSort(left);
+    auto sortedRight = mergeSort(right);
+    auto result = merge(sortedLeft, sortedRight);
     return result;
 }
 ```
