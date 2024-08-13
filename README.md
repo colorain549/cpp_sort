@@ -269,7 +269,7 @@ vector<int> mergeSort(vector<int> &ivec)
     return result;
 }
 ```
-## 8计数排序(升序)(要求元素不重复)(需给定范)
+## 8计数排序(升序)(要求元素不重复)(需给定范围)
 1. 说明
 * 先遍历一次整个数组, 统计每个元素出现的次数, 用一个新的数组保存
 * 将出现过的元素, 覆盖原来的数组
@@ -304,7 +304,7 @@ void countSort(vector<int> &ivec)
     }
 }
 ```
-## 9第k大元素(可重复)(9_kthMaxValue.cc)(堆排序)
+## 🌟9第k大元素(可重复)(9_kthMaxValue.cc)(堆排序)
 ```
 void heapSort(vector<int> &ivec, int k)
 {
@@ -343,7 +343,7 @@ int pqueSort(vector<int>&ivec, int k){
     return pque.top();
 }
 ```
-## 10第k大元素(可重复但内存不足k)
+## 🌟10第k大元素(可重复但内存不足k)
 ```
 // (n = 8)
 // (k = 5)
