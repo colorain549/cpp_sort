@@ -432,7 +432,7 @@ set<int> iset(ivec.begin(), ivec.end());
     }
     cout << *it << endl;
 ```
-## 11第k大元素(不重复)(vector)(11_kthMaxValueVec.cc)
+## 11第k大元素(不重复)(vector)(不推荐, 需给定范围)
 ## 12冒泡排序(相邻两数)(降序)
 ## 12冒泡排序(不相邻两数)(降序)
 ## 13选择排序(降序)
