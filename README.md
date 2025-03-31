@@ -279,6 +279,10 @@ vector<int> mergeSort(vector<int> &ivec)
 * m为元素的最大值, 即代码中的index
 3. 补充
 * 空间复杂度(O(n))
+4. 实现
+* 统计频率
+* 外层循环，实现升序或降序
+* 内层循环，填充到某数组，获得结果 
 ```
 void countSort(vector<int> &ivec)
 {
@@ -292,6 +296,7 @@ void countSort(vector<int> &ivec)
     }
     // 结果数组下标
     int newIndex = 0;
+    // !!!0-9 为升序!!!
     for (int i = 0; i < index; i++)
     {
         // 遇到频率大于0的元素
