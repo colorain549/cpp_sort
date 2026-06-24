@@ -28,28 +28,6 @@ void bubbleSort(vector<int> &ivec)
     }
 }
 ```
-## 1冒泡排序(不相邻两数)(升序)
-1. 说明
-* 内层循环: 比较i和i+1后的每一个元素，若符合条件, 则交换元素
-2. 时间复杂度
-* 外层循环n次, 内层循环(n-1)+(n-2)+...+1次, 循环比较次数n*(n-1)/2, 即O(n^2)
-```
-void bubbleSort(vector<int> &ivec)
-{
-    // 循环 n次
-    for (int i = 0; i < ivec.size(); i++)
-    {
-        // 比较(n-1)+(n-2)+...+1次
-        for (int j = i + 1; j < ivec.size(); j++)
-        {
-            if (ivec[i] > ivec[j])
-            {
-                swap(ivec[i], ivec[j]);
-            }
-        }
-    }
-}
-```
 ## 2选择排序(升序)
 1. 说明
 * 内层循环: 比较i和i+1后的每一个元素，若符合条件, 则交换指针, 内循环完整遍历一轮后才交换元素
